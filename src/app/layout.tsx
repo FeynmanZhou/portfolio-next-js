@@ -71,12 +71,21 @@ export default function RootLayout({ children } : RootLayoutProps) {
 		<Flex
 			as="html" lang="en"
 			background="page"
-			data-neutral={style.neutral} data-brand={style.brand} data-accent={style.accent}
-			data-solid={style.solid} data-solid-style={style.solidStyle}
-			data-theme={style.theme}
-			data-border={style.border}
-			data-surface={style.surface}
-			data-transition={style.transition}
+			// data-neutral={style.neutral} data-brand={style.brand} data-accent={style.accent}
+			// data-solid={style.solid} data-solid-style={style.solidStyle}
+			// data-theme={style.theme}
+			// data-border={style.border}
+			// data-surface={style.surface}
+			// data-transition={style.transition}
+			data-theme="light"
+			data-brand="pink"
+			data-accent="cyan"
+			data-neutral="slate"
+			data-border="playful"
+			data-solid="contrast"
+			data-solid-style="flat"
+			data-surface="filled"
+			data-transition="all"
 			className={classNames(
 				primary.variable,
 				secondary ? secondary.variable : '',

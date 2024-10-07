@@ -1,0 +1,184 @@
+---
+title: "Secure Container Supply Chain in Docker Hub with Notation and ORAS"
+publishedAt: "2023-02-20"
+summary: "This blog post demonstrates how to generate supply chain artifacts (e.g. signature, SBOM) with Docker CLI and distribute them from local registry to Docker Hub using ORAS."
+---
+
+As cloud native development continues to grow, we have seen increased community interest in evolving registries to natively store, pull, copy, and discover a graph of supply chain artifacts. Artifact references are important for many use cases, such as supply chain security, content discover, content promotion within or across registries. 
+
+Docker Hub recently announced the [OCI Artifacts Support](https://www.docker.com/blog/announcing-docker-hub-oci-artifacts-support/) to help users distribute any type of application artifact to Docker Hub. It extends the role of Docker Hub to store not just container images. The OCI group also released an RC version for the OCI Artifact Manifest in the Image spec project in September 2022. This enables storing software artifacts alongside container images in a registry to secure the supply chain.
+
+This blog post demonstrates how to generate supply chain artifacts with Docker CLI and distribute them from local registry to Docker Hub using ORAS in the container supply chain security scenario.
+
+## Why supply chain artifacts matter in containers
+
+In 2021, the US government highlighted the importance of software supply chain security with two executive orders: [supply chains](https://www.whitehouse.gov/briefing-room/presidential-actions/2021/02/24/executive-order-on-americas-supply-chains/) and [cybersecurity](https://www.whitehouse.gov/briefing-room/presidential-actions/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/). Ensuring transparency and integrity of software delivery have been requested by our customers since then. Naturally, more and more developers need to associate supply chain artifacts like Software Bill of Materials (SBoM), security scan results, and signatures to container images before they distribute them.
+
+## Introduce Notation and ORAS 
+
+Notation is a CNCF incubating project that aims to provide signing and verification capabilities to ensure delivery integrity and security. It supports creating and storing signatures for container images, SBOM, vulnerability scanning results, etc. to ensure the artifacts someone produced have not been tampered by others. 
+
+ORAS is a generic OCI registry client for distributing OCI artifacts across clouds and on-prem environments. It has fully supported OCI Reference Types to empower software supply chain artifact discovery and distribution. You can use ORAS to attach and reference supply chain artifacts to a container image. 
+
+## Generate SBOM for container image
+
+Docker [announced Docker SBOM](https://www.docker.com/blog/announcing-docker-sbom-a-step-towards-more-visibility-into-docker-images/) in Apr 2022 to increase visibility into Docker images. It aims to improve trust in the supply chain by making it easier to see what is in images and providing SBOMs to consumers of software. Now you can use [Docker SBOM CLI Plugin](https://github.com/docker/sbom-cli-plugin) to generate an SPDX SBOM file then attach it to a container image.
+
+Run a [CNCF distribution registry](https://hub.docker.com/_/registry) as the local registry. 
+
+```bash
+docker run -d -p 5000:5000 registry:2.8.1
+```
+
+Then build and push a sample image to this registry.
+
+```
+docker build -t localhost:5000/net-monitor:v1 https://github.com/wabbit-networks/net-monitor.git#main
+docker push localhost:5000/net-monitor:v1
+```
+
+As Docker SBOM was included in Docker Desktop natively, you can use it to generate an SPDX SBOM file for a Docker image:
+
+```
+docker sbom --format spdx-json --output sbom.json localhost:5000/net-monitor:v1
+```
+
+> Note: You can check out the [Docker documentation](https://docs.docker.com/engine/sbom/) for details of Docker SBOM.
+
+## Generate vulnerability scan result for container image
+
+Apart from the Docker SBOM, Docker made another update in the security journey. Docker [added a scanning command to the Docker CLI](https://www.docker.com/blog/bringing-docker-scan-to-linux/) on Docker Desktop in June 2021. Vulnerability scan results provide remediation guidance on container images that you can do to remove the detected vulnerabilities before you distribute them.
+
+Similar as above, you can use [Docker Scan CLI Plugin](https://github.com/docker/scan-cli-plugin) to run vulnerability detection and save the scan result to a JSON file.
+
+```
+docker scan --json localhost:5000/net-monitor:v1
+```
+
+You can save the scanning result to a file `scan.json` from the JSON output above.
+
+> Note: You can check out the [Docker documentation](https://docs.docker.com/engine/scan/) to learn more about the vulnerability scanning for Docker local images.
+
+## Attach SBOM and vulnerability scan result to container image
+
+Use ORAS CLI to attach the SPDX SBOM file and vulnerability scan result to container image. It will link and reference these two supply chain artifacts to the sample image without changing existing content.
+
+```
+oras attach --artifact-type doc/example localhost:5000/net-monitor:v1 sbom.json
+```
+
+```
+oras attach --artifact-type sbom/example localhost:5000/net-monitor:v1 scan.json
+```
+
+> Note: You can find more example use cases of `oras attach` from the [ORAS documentation](https://oras.land/cli_reference/0_oras_attach/).
+
+
+## Sign container image with Notation
+
+Use Notation to sign a docker image in Docker Hub. First, generate a test RSA key for signing artifacts, and a self-signed X.509 test certificate for verifying artifacts.
+
+> Note: Self-signed certificates should be used for testing and development purposes only and should not be used in production environments.
+
+The following command generates a test key and a self-signed X.509 certificate. The self-signed X.509 certificate is added to a named trust store `wabbit-networks.io` of type `ca`.
+
+```console
+notation cert generate-test --default "wabbit-networks.io"
+```
+
+Confirm the signing key is correctly configured and the certificate is stored in the trust store.
+
+```console
+$ notation key ls
+NAME   KEY PATH   CERTIFICATE PATH   ID        PLUGIN NAME
+* sample-network.io   /home/azureuser/.config/notation/localkeys/sample-network.io.key   /home/azureuser/.config/notation/localkeys/sample-network.io.crt
+```
+
+```console
+$ notation cert ls
+/home/azureuser/.config/notation/truststore/x509/ca/sample-network.io/sample-network.io.crt
+```
+
+Sign the container image with the default RSA key uses [COSE](https://datatracker.ietf.org/doc/html/rfc8152/) signature format.
+
+```console
+$ notation sign $IMAGE --signature-format cose $IMAGE
+
+```
+
+The generated signature is pushed to the Docker Hub and the digest of the container image returned.
+
+Use `notation ls` to show the signature associated with the container image.
+
+```output
+$ notation ls $IMAGE
+docker.io/pengfeizhou/net-monitor@sha256:073b75987e95b89f187a89809f08a32033972bb63cda279db8a9ca16b7ff555a
+└── application/vnd.cncf.notary.v2.signature
+    └── sha256:ba3a68a28648ba18c51a479145fca60d96b43dc96c6ab22f412c89ac56a9038b
+```
+
+## Promote supply chain artifact across registries
+
+After you attached artifacts to the sample container image, you will be able to view the hierarchical list of the referencing objects in a graph:
+
+```
+$ oras discover localhost:5000/net-monitor:v1 -o tree
+localhost:5000/net-monitor:v1
+├── doc/example
+|   └─── sha256:7b0f65e29e452bebb8a297b2dd4b587f277b2a39c1983f5eb8d90f6c0992e34c
+└── sbom/example
+    └─── sha256:7b0f65e29e452bebb8a297b2dd4b587f277b2a39c1983f5eb8d90f6c0992e34c
+```
+
+Use ORAS to copy the supply chain artifacts generated above alongside the sample container image from the local registry to Docker Hub. This process is similar to `docker pull`, `docker tag`, and `docker push` but with a simplified experience.
+
+```
+oras copy localhost:5000/net-monitor:v1 docker.io/pengfeizhou/net-monitor:v1 -r
+```
+
+After coping the graph of supply chain artifacts to Docker Hub. You can use `oras discover` to validate if the hierarchical list exists:
+
+```
+$ oras discover docker.io/pengfeizhou/net-monitor:v1 -o tree
+docker.io/pengfeizhou/net-monitor:v1
+├── doc/example
+|   └─── sha256:7b0f65e29e452bebb8a297b2dd4b587f277b2a39c1983f5eb8d90f6c0992e34c
+└── sbom/example
+    └─── sha256:7b0f65e29e452bebb8a297b2dd4b587f277b2a39c1983f5eb8d90f6c0992e34c
+```
+
+## Verify container image
+
+To verify the container image, configure the trust policy to specify trusted identities that sign the artifacts, and level of signature verification to use. Create a `trustpolicy.json` with the following trust policy in the notation configuration directory.
+
+```json
+{
+    "version": "1.0",
+    "trustPolicies": [
+        {
+            "name": "wabbit-networks-images",
+            "registryScopes": [ "*" ],
+            "signatureVerification": {
+                "level" : "strict" 
+            },
+            "trustStores": [ "ca:wabbit-networks.io" ],
+            "trustedIdentities": [
+                "*"
+            ]
+        }
+    ]
+}
+```
+
+> NOTE: For Linux, the notation configuration directory is `${HOME}/.config/notation/`. For macOS, the notation configuration directory is `${HOME}/Library/Application Support/notation/`. For Windows, the notation configuration folder is `%USERPROFILE%\AppData\Roaming\notation\`.
+
+Next, verify signatures associated with the container image.
+
+```console
+$ notation verify localhost:5000/net-monitor:v1
+Successfully verified signature for localhost:5000/net-monitor:v1
+```
+
+
+
+

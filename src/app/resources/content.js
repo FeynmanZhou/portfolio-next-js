@@ -1,15 +1,15 @@
 import { InlineCode } from "@/once-ui/components";
 
 const person = {
-    firstName: 'Selene',
-    lastName:  'Yu',
+    firstName: 'Feynman',
+    lastName:  'Zhou',
     get name() {
         return `${this.firstName} ${this.lastName}`;
     },
-    role:      'Design Engineer',
+    role:      'Product Builder, Content Creator',
     avatar:    '/images/avatar.jpg',
-    location:  'Asia/Jakarta',        // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-    languages: ['English', 'Bahasa']  // optional: Leave the array empty if you don't want to display languages
+    location:  'Asia/Singapore',     // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+    languages: ['English', 'Chinese']  // optional: Leave the array empty if you don't want to display languages
 }
 
 const newsletter = {
@@ -24,22 +24,22 @@ const social = [
     {
         name: 'GitHub',
         icon: 'github',
-        link: 'https://github.com/once-ui-system/nextjs-starter',
+        link: 'https://github.com/feynmanzhou/',
     },
     {
         name: 'LinkedIn',
         icon: 'linkedin',
-        link: 'https://www.linkedin.com/company/once-ui/',
+        link: 'https://www.linkedin.com/in/feynmanzhou/',
     },
     {
         name: 'X',
         icon: 'x',
-        link: '',
+        link: 'https://www.twitter.com/feynmanzhou/',
     },
     {
         name: 'Email',
         icon: 'email',
-        link: 'mailto:example@gmail.com',
+        link: 'mailto:zpf0610@gmail.com',
     },
 ]
 
@@ -47,8 +47,8 @@ const home = {
     label: 'Home',
     title: `${person.name}'s Portfolio`,
     description: `Portfolio website showcasing my work as a ${person.role}`,
-    headline: <>Design engineer and builder</>,
-    subline: <>I'm Selene, a design engineer at <InlineCode>FLY</InlineCode>, where I craft intuitive<br/> user experiences. After hours, I build my own projects.</>
+    headline: <>Product Builder, Content Creator</>,
+    subline: <>Hey, I'm Feynman, a <InlineCode>Product Builder</InlineCode> for technology companies and a <InlineCode>Content Creator</InlineCode> for human beings. <br/> I share knowledge and insights around my work and learning. My opinions are my own</>
 }
 
 const about = {
@@ -69,36 +69,47 @@ const about = {
     intro: {
         display: true,
         title: 'Introduction',
-        description: <>Selene is a Jakarta-based design engineer with a passion for transforming complex challenges into simple, elegant design solutions. Her work spans digital interfaces, interactive experiences, and the convergence of design and technology.</>
+        description: <>Feynman is a Product Builder and Content Creator with a passion for transforming complex challenges into simple, elegant product solutions. He has been working in open-source projects for over 6 years and built active communities for some popular projects. <br/> <br/> ENFJ. Feynman enjoys working in public and exploring new things. He relocated from Beijing, China to Seattle, U.S. in 2024. </>
     },
     work: {
         display: true, // set to false to hide this section
         title: 'Work Experience',
         experiences: [
             {
-                company: 'FLY',
-                timeframe: '2022 - Present',
-                role: 'Senior Design Engineer',
+                company: 'Microsoft',
+                timeframe: '2022.5 - Present',
+                role: 'Product Manager',
                 achievements: [
                     <>Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user engagement and 30% faster load times.</>,
                     <>Spearheaded the integration of AI tools into design workflows, enabling designers to iterate 50% faster.</>
                 ],
                 images: [ // optional: leave the array empty if you don't want to display images
                     {
-                        src: '/images/projects/project-01/cover-01.jpg',
-                        alt: 'Once UI Project',
+                        src: '/images/projects/project-01/notation-cli-screenshot.png',
+                        alt: 'Notation',
                         width: 16,
                         height: 9
                     }
                 ]
             },
             {
-                company: 'Creativ3',
+                company: 'QingCloud',
                 timeframe: '2018 - 2022',
-                role: 'Lead Designer',
+                role: 'Senior Community Manager (Team Lead)',
                 achievements: [
                     <>Developed a design system that unified the brand across multiple platforms, improving design consistency by 40%.</>,
                     <>Led a cross-functional team to launch a new product line, contributing to a 15% increase in overall company revenue.</>
+                ],
+                images: [ ]
+            },
+            {
+                company: 'Hewlett Packard Enterprise (HPE)',
+                timeframe: '2016 - 2018',
+                role: 'Software Engineer (BI)',
+                achievements: [
+                    <>Help the financial team in data ETL (extract transform and load) for financial reconciliation, and export structured BI data to the
+                    customers.</>,
+                    <>Served 10+ Fortune Global 500 customers and deliver reporting dashboard with Power BI for in-depth data analytics</>
                 ],
                 images: [ ]
             }
@@ -106,15 +117,17 @@ const about = {
     },
     studies: {
         display: true, // set to false to hide this section
-        title: 'Studies',
+        title: 'Education',
         institutions: [
             {
-                name: 'University of Jakarta',
-                description: <>Studied software engineering.</>,
+                name: 'Hunan University of Arts & Science',
+                timeframe: '2012 - 2016',
+                description: <>Electronic Information Science & Technology | Bachelor degree</>,
             },
             {
-                name: 'Build the Future',
-                description: <>Studied online marketing and personal branding.</>,
+                name: 'University of International Business & Economics',
+                timeframe: '2020',
+                description: <>Economics analytics | Part-time </>,
             }
         ]
     },
@@ -123,17 +136,17 @@ const about = {
         title: 'Technical skills',
         skills: [
             {
-                title: 'Figma',
-                description: <>Able to prototype in Figma with Once UI with unnatural speed.</>,
+                title: 'UI/UX Design',
+                description: <>Able to create prototype in Figma with UI library.</>,
                 images: [
                     {
-                        src: '/images/projects/project-01/cover-02.jpg',
+                        src: '/images/projects/project-01/notaryproject-landing-page.jpg',
                         alt: 'Project image',
                         width: 16,
                         height: 9
                     },
                     {
-                        src: '/images/projects/project-01/cover-03.jpg',
+                        src: '/images/projects/project-01/oras-landingpage.jpg',
                         alt: 'Project image',
                         width: 16,
                         height: 9
@@ -141,8 +154,8 @@ const about = {
                 ]
             },
             {
-                title: 'Next.js',
-                description: <>Building next gen apps with Next.js + Once UI + Supabase.</>,
+                title: 'Cloud Computing Technologies',
+                description: <>Azure, Kubernetes, Docker, OCI, Linux, DevOps, Security</>,
                 images: [
                     {
                         src: '/images/projects/project-01/cover-04.jpg',
@@ -158,7 +171,7 @@ const about = {
 
 const blog = {
     label: 'Blog',
-    title: 'Writing about design and tech...',
+    title: 'Writing about product management and cloud technologies',
     description: `Read what ${person.name} has been up to recently`
     // Create new blog posts by adding a new .mdx file to app/blog/posts
     // All posts will be listed on the /blog route

@@ -2,15 +2,15 @@ import { InlineCode } from "@/once-ui/components";
 import Link from 'next/link'
 
 const person = {
-    firstName: 'Selene',
-    lastName:  'Yu',
+    firstName: 'Feynman',
+    lastName:  'Zhou',
     get name() {
         return `${this.firstName} ${this.lastName}`;
     },
-    role:      'Design Engineer',
+    role:      'Product Manager',
     avatar:    '/images/avatar.jpg',
-    location:  'Asia/Jakarta',        // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-    languages: ['English', 'Bahasa']  // optional: Leave the array empty if you don't want to display languages
+    location:  'Asia/Singapore',     // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+    languages: ['English', 'Chinese']  // optional: Leave the array empty if you don't want to display languages
 }
 
 const newsletter = {
