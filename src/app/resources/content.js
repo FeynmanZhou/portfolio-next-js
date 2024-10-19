@@ -97,8 +97,11 @@ const about = {
                 timeframe: '2018 - 2022',
                 role: 'Senior Community Manager (Team Lead)',
                 achievements: [
-                    <>Developed a design system that unified the brand across multiple platforms, improving design consistency by 40%.</>,
-                    <>Led a cross-functional team to launch a new product line, contributing to a 15% increase in overall company revenue.</>
+                    <> Build community and awareness through public channels of influence including blogs, community events, meetings, and contributions to some open source projects.</>,
+                    <> Foster a data-driven community. Focus on the health assessments, user growth, and ecosystem scale.</>,
+                    <> Build the partnership with cloud providers (AWS, Azure, DigitalOcean, etc) and vendors.</>,
+                    <> Engage with community users, contributors, and partners, gathering feedback to the product teams on how to improve engagement.</>,
+                    <> Support internal teams to be better open source citizens and engage with the upstream open source projects, based on both internal and public community guidelines.</>,
                 ],
                 images: [ ]
             },
@@ -137,7 +140,7 @@ const about = {
         skills: [
             {
                 title: 'UI/UX Design',
-                description: <>Able to create prototype in Figma with UI library.</>,
+                description: <>Able to create prototype in Figma with various UI library.</>,
                 images: [
                     {
                         src: '/images/projects/project-01/notaryproject-landing-page.jpg',
@@ -158,7 +161,7 @@ const about = {
                 description: <>Azure, Kubernetes, Docker, OCI, Linux, DevOps, Security</>,
                 images: [
                     {
-                        src: '/images/projects/project-01/cover-04.jpg',
+                        src: '/images/projects/project-01/my-skills.png',
                         alt: 'Project image',
                         width: 16,
                         height: 9

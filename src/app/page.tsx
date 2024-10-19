@@ -114,7 +114,7 @@ export default function Home() {
 			</RevealFx>
 			{routes['/blog'] && (
 				<Flex fillWidth paddingX="20">
-					<Posts range={[2,3]} columns="2"/>
+					<Posts range={[1,2,3]} columns="2"/>
 				</Flex>
 			)}
 			{/* <Projects range={[1,3]}/> */}

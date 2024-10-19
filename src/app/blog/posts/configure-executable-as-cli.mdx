@@ -1,0 +1,74 @@
+---
+title: "How to configure an executable file as a default CLI on Linux/macOS?"
+publishedAt: "2024-03-05"
+summary: "Step-by-step guide to tell how to configure an executable file as a default CLI command on Linux or macOS"
+---
+
+To configure an executable file as a default CLI command on Linux or macOS, follow these steps:
+
+### 1. **Make the file executable** (if it's not already)
+First, ensure that the file is executable. You can do this using the `chmod` command. For example:
+
+```bash
+chmod +x /path/to/your/executable
+```
+
+This gives the file execute permissions.
+
+### 2. **Move the executable to a directory in your `$PATH`**
+You need to place your executable in a directory that is part of the system's `$PATH` environment variable, or add the directory where it resides to your `$PATH`. Common directories include:
+
+- `/usr/local/bin/`
+- `/usr/bin/`
+- `/opt/local/bin/`
+
+You can move the executable like this:
+
+```bash
+sudo mv /path/to/your/executable /usr/local/bin/
+```
+
+### 3. **Verify the `$PATH`**
+Make sure the directory where your executable is located is in your `$PATH`. To check your `$PATH`, run:
+
+```bash
+echo $PATH
+```
+
+If the directory is not listed, you can add it by editing your shell configuration file (e.g., `.bash_profile`, `.zshrc`, or `.bashrc`, depending on your shell).
+
+For example, to add `/usr/local/bin` to your `$PATH`, you would add this line to your configuration file:
+
+```bash
+export PATH="/usr/local/bin:$PATH"
+```
+
+After making changes to your shell configuration file, make sure to reload the shell:
+
+```bash
+source ~/.zshrc   # or ~/.bash_profile depending on your shell
+```
+
+### 4. **Set alias (Optional)**
+If you want to use a custom command name, you can create an alias by adding this to your shell configuration file:
+
+```bash
+alias mycommand="/usr/local/bin/your-executable"
+```
+
+Reload the shell as mentioned earlier, and now you'll be able to run `mycommand` in your terminal to execute the file.
+
+### 5. **Test the command**
+To confirm everything is set up correctly, try running the command:
+
+```bash
+your-executable
+```
+
+Or, if you've set up an alias:
+
+```bash
+mycommand
+```
+
+That’s it! Your executable should now work as a default command-line tool on your macOS system.
