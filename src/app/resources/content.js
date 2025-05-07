@@ -6,9 +6,9 @@ const person = {
     get name() {
         return `${this.firstName} ${this.lastName}`;
     },
-    role:      'Product Builder, Content Creator',
+    role:      'Product Builder, Open Source Maintainer',
     avatar:    '/images/avatar.jpg',
-    location:  'Asia/Singapore',     // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+    location:  'US/Pacific',     // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
     languages: ['English', 'Chinese']  // optional: Leave the array empty if you don't want to display languages
 }
 
@@ -47,8 +47,11 @@ const home = {
     label: 'Home',
     title: `${person.name}'s Portfolio`,
     description: `Portfolio website showcasing my work as a ${person.role}`,
-    headline: <>Product Builder, Content Creator</>,
-    subline: <>Hey, I'm Feynman, a <InlineCode>Product Builder</InlineCode> for technology companies and a <InlineCode>Content Creator</InlineCode> for human beings. <br/> I share knowledge and insights around my work and learning. My opinions are my own</>
+    headline: <>Product Builder, Open Source Maintainer</>,
+    subline: <>Hey, I'm Feynman, a <InlineCode>Product Builder</InlineCode> for technology products and an active <InlineCode>maintainer</InlineCode> for open source projects. <br/> I share insights from my work and learning in tech, product thinking, and community building.
+All views are my own.</>,
+    path: '/',
+    image: '/images/og/home.jpg',
 }
 
 const about = {
@@ -195,75 +198,45 @@ const gallery = {
     // Images from https://pexels.com
     images: [
         { 
-            src: '/images/gallery/img-01.jpg', 
+            src: '/images/gallery/vertical-1.jpg', 
             alt: 'image',
             orientation: 'vertical'
         },
         { 
-            src: '/images/gallery/img-02.jpg', 
+            src: '/images/gallery/horizontal-1.jpg', 
             alt: 'image',
             orientation: 'horizontal'
         },
         { 
-            src: '/images/gallery/img-03.jpg', 
+            src: '/images/gallery/vertical-2.jpg', 
             alt: 'image',
             orientation: 'vertical'
         },
         { 
-            src: '/images/gallery/img-04.jpg', 
+            src: '/images/gallery/horizontal-2.jpg', 
             alt: 'image',
             orientation: 'horizontal'
         },
         { 
-            src: '/images/gallery/img-05.jpg', 
+            src: '/images/gallery/horizontal-3.jpg', 
             alt: 'image',
             orientation: 'horizontal'
         },
         { 
-            src: '/images/gallery/img-06.jpg', 
+            src: '/images/gallery/vertical-3.jpg', 
             alt: 'image',
             orientation: 'vertical'
         },
         { 
-            src: '/images/gallery/img-07.jpg', 
+            src: '/images/gallery/horizontal-4.jpg', 
             alt: 'image',
             orientation: 'horizontal'
         },
         { 
-            src: '/images/gallery/img-08.jpg', 
+            src: '/images/gallery/vertical-4.jpg', 
             alt: 'image',
             orientation: 'vertical'
-        },
-        { 
-            src: '/images/gallery/img-09.jpg', 
-            alt: 'image',
-            orientation: 'horizontal'
-        },
-        { 
-            src: '/images/gallery/img-10.jpg', 
-            alt: 'image',
-            orientation: 'horizontal'
-        },
-        { 
-            src: '/images/gallery/img-11.jpg', 
-            alt: 'image',
-            orientation: 'vertical'
-        },
-        { 
-            src: '/images/gallery/img-12.jpg', 
-            alt: 'image',
-            orientation: 'horizontal'
-        },
-        { 
-            src: '/images/gallery/img-13.jpg', 
-            alt: 'image',
-            orientation: 'horizontal'
-        },
-        { 
-            src: '/images/gallery/img-14.jpg', 
-            alt: 'image',
-            orientation: 'horizontal'
-        },
+        }
     ]
 }
 

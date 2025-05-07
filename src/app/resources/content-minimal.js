@@ -9,7 +9,7 @@ const person = {
     },
     role:      'Product Manager',
     avatar:    '/images/avatar.jpg',
-    location:  'Asia/Singapore',     // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+    location:  'US/Pacific',     // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
     languages: ['English', 'Chinese']  // optional: Leave the array empty if you don't want to display languages
 }
 

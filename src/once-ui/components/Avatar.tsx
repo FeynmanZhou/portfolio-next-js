@@ -1,129 +1,146 @@
 "use client";
 
-import React, { forwardRef } from 'react';
+import React, { forwardRef } from "react";
 
-import { Skeleton, Icon, Text, StatusIndicator, Flex, SmartImage } from '.';
-import styles from './Avatar.module.scss';
+import { Skeleton, Icon, Text, StatusIndicator, Flex, SmartImage } from ".";
+import styles from "./Avatar.module.scss";
 
-interface AvatarProps {
-    size?: 'xs' | 's' | 'm' | 'l' | 'xl';
-    value?: string;
-    src?: string;
-    loading?: boolean;
-    empty?: boolean;
-    statusIndicator?: {
-        color: 'green' | 'yellow' | 'red' | 'gray';
-    };
-    style?: React.CSSProperties;
-    className?: string;
+interface AvatarProps extends React.ComponentProps<typeof Flex> {
+  size?: "xs" | "s" | "m" | "l" | "xl" | number;
+  value?: string;
+  src?: string;
+  loading?: boolean;
+  empty?: boolean;
+  statusIndicator?: {
+    color: "green" | "yellow" | "red" | "gray";
+  };
+  style?: React.CSSProperties;
+  className?: string;
 }
 
-const sizeMapping: Record<'xs' | 's' | 'm' | 'l' | 'xl', number> = {
-    xs: 20,
-    s: 24,
-    m: 32,
-    l: 48,
-    xl: 160,
+const sizeMapping: Record<"xs" | "s" | "m" | "l" | "xl", number> = {
+  xs: 20,
+  s: 24,
+  m: 32,
+  l: 48,
+  xl: 160,
 };
 
-const statusIndicatorSizeMapping: Record<'xs' | 's' | 'm' | 'l' | 'xl', 's' | 'm' | 'l'> = {
-    xs: 's',
-    s: 's',
-    m: 'm',
-    l: 'm',
-    xl: 'l',
+const statusIndicatorSizeMapping: Record<"xs" | "s" | "m" | "l" | "xl", "s" | "m" | "l"> = {
+  xs: "s",
+  s: "s",
+  m: "m",
+  l: "m",
+  xl: "l",
 };
 
-const Avatar: React.FC<AvatarProps> = forwardRef<HTMLDivElement, AvatarProps>(({
-    size = 'm',
-    value,
-    src,
-    loading,
-    empty,
-    statusIndicator,
-    style,
-    className
-}, ref) => {
+const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
+  (
+    { size = "m", value, src, loading, empty, statusIndicator, className, style = {}, ...rest },
+    ref,
+  ) => {
+    const sizeInRem = typeof size === "number" ? `${size}rem` : undefined;
+    const sizeStyle = sizeInRem
+      ? {
+          width: sizeInRem,
+          height: sizeInRem,
+          minWidth: sizeInRem,
+          minHeight: sizeInRem,
+          ...style,
+        }
+      : style;
     const isEmpty = empty || (!src && !value);
 
     if (value && src) {
-        throw new Error("Avatar cannot have both 'value' and 'src' props.");
+      throw new Error("Avatar cannot have both 'value' and 'src' props.");
     }
 
     if (loading) {
-        return (
-            <Skeleton
-                style={{border: '1px solid var(--neutral-border-medium)'}}
-                shape="circle"
-                width={size}
-                height={size}
-                className={`${styles.avatar} ${className}`}
-                aria-busy="true"
-                aria-label="Loading avatar"/>
-        );
+      return (
+        <Skeleton
+          {...rest}
+          border="neutral-medium"
+          shape="circle"
+          width={typeof size === "number" ? "m" : size}
+          height={typeof size === "number" ? "m" : size}
+          className={`${styles.avatar} ${className}`}
+          aria-busy="true"
+          aria-label="Loading avatar"
+        />
+      );
     }
 
     const renderContent = () => {
-        if (isEmpty) {
-            return <Icon
-                onBackground="neutral-medium"
-                name="person"
-                size={size as 'xs' | 's' | 'm' | 'l' | 'xl'}
-                className={styles.icon}
-                aria-label="Empty avatar"/>;
-        }
+      if (isEmpty) {
+        return (
+          <Icon
+            onBackground="neutral-medium"
+            name="person"
+            size="m"
+            style={typeof size === "number" ? { fontSize: `${size}rem` } : undefined}
+            className={styles.icon}
+            aria-label="Empty avatar"
+          />
+        );
+      }
 
-        if (src) {
-            return (
-                <SmartImage
-                    src={src}
-                    fill
-                    alt="Avatar"
-                    sizes={`${sizeMapping[size]}px`}
-                    className={styles.image}/>
-            );
-        }
+      if (src) {
+        return (
+          <SmartImage
+            radius="full"
+            src={src}
+            fill
+            alt="Avatar"
+            sizes={typeof size === "string" ? `${sizeMapping[size]}px` : `${size * 16}px`}
+            className={styles.image}
+          />
+        );
+      }
 
-        if (value) {
-            return (
-                <Text
-                    as="span"
-                    onBackground="neutral-weak"
-                    variant={`body-default-${size}`}
-                    className={styles.value}
-                    aria-label={`Avatar with initials ${value}`}>
-                    {value}
-                </Text>
-            );
-        }
+      if (value) {
+        return (
+          <Text
+            as="span"
+            onBackground="neutral-weak"
+            variant={`body-default-${typeof size === "string" ? size : "m"}`}
+            className={styles.value}
+            aria-label={`Avatar with initials ${value}`}
+          >
+            {value}
+          </Text>
+        );
+      }
 
-        return null;
+      return null;
     };
 
     return (
-        <Flex
-            ref={ref}
-            position="relative"
-            justifyContent="center"
-            alignItems="center"
-            radius="full"
-            border="neutral-strong"
-            borderStyle="solid-1"
-            background="surface"
-            style={style}
-            role="img"
-            className={`${styles.avatar} ${styles[size]} ${className || ''}`}>
-            {renderContent()}
-            {statusIndicator && (
-                <StatusIndicator
-                    size={statusIndicatorSizeMapping[size]}
-                    color={statusIndicator.color}
-                    className={`${styles.className || ''} ${styles.indicator} ${size === 'xl' ? styles.position : ''}`}
-                    aria-label={`Status: ${statusIndicator.color}`}/>
-            )}
-        </Flex>
+      <Flex
+        ref={ref}
+        role="img"
+        horizontal="center"
+        vertical="center"
+        radius="full"
+        border="neutral-strong"
+        background="surface"
+        style={sizeStyle}
+        className={`${styles.avatar} ${typeof size === "string" ? styles[size] : ""} ${className || ""}`}
+        {...rest}
+      >
+        {renderContent()}
+        {statusIndicator && (
+          <StatusIndicator
+            position="absolute"
+            size={typeof size === "string" ? statusIndicatorSizeMapping[size] : "l"}
+            color={statusIndicator.color}
+            className={`${styles.className || ""} ${styles.indicator} ${size === "xl" || (typeof size === "number" && size >= 10) ? styles.position : ""}`}
+            aria-label={`Status: ${statusIndicator.color}`}
+          />
+        )}
+      </Flex>
     );
-});
+  },
+);
 
 Avatar.displayName = "Avatar";
 

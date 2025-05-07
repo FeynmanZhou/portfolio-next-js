@@ -1,125 +1,118 @@
 "use client";
 
-import React, { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
-import { Flex, Icon, Heading } from '.';
+import React, { useState, forwardRef, useImperativeHandle, useEffect, useCallback } from "react";
+import { Flex, Icon, Text, Column, Grid } from ".";
+import styles from "./Accordion.module.scss";
 
-interface AccordionProps {
-    title: React.ReactNode;
-    children: React.ReactNode;
-    style?: React.CSSProperties;
-    className?: string;
-    open?: boolean;
+export interface AccordionHandle extends HTMLDivElement {
+  toggle: () => void;
+  open: () => void;
+  close: () => void;
 }
 
-const Accordion: React.FC<AccordionProps> = forwardRef(({
-    title,
-    children,
-    style,
-    className,
-    open = false
-}, ref) => {
+interface AccordionProps extends Omit<React.ComponentProps<typeof Flex>, "title"> {
+  title: React.ReactNode;
+  children: React.ReactNode;
+  icon?: string;
+  iconRotation?: number;
+  size?: "s" | "m" | "l";
+  radius?: "xs" | "s" | "m" | "l" | "full";
+  open?: boolean;
+}
+
+const Accordion = forwardRef<AccordionHandle, AccordionProps>(
+  (
+    {
+      title,
+      children,
+      open = false,
+      iconRotation = 180,
+      radius,
+      icon = "chevronDown",
+      size = "m",
+      ...rest
+    },
+    ref,
+  ) => {
     const [isOpen, setIsOpen] = useState(open);
-    const [maxHeight, setMaxHeight] = useState(open ? 'none' : '0px');
-    const contentRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (open) {
-            setIsOpen(true);
-            setMaxHeight(`${contentRef.current?.scrollHeight}px`);
-        } else {
-            setIsOpen(false);
-            setMaxHeight('0px');
-        }
+      setIsOpen(open);
     }, [open]);
 
-    const toggleAccordion = () => {
-        if (isOpen) {
-            setMaxHeight('0px');
-        } else {
-            setMaxHeight(`${contentRef.current?.scrollHeight}px`);
-        }
-        setIsOpen(!isOpen);
-    };
+    const toggleAccordion = useCallback(() => {
+      setIsOpen((prev) => !prev);
+    }, []);
 
-    useImperativeHandle(ref, () => ({
-        toggle: toggleAccordion,
-        open: () => {
-            setIsOpen(true);
-            setMaxHeight(`${contentRef.current?.scrollHeight}px`);
-        },
-        close: () => {
-            setIsOpen(false);
-            setMaxHeight('0px');
-        }
-    }));
-
-    useEffect(() => {
-        const handleTransitionEnd = () => {
-            if (isOpen) {
-                setMaxHeight('none');
-            }
+    useImperativeHandle(
+      ref,
+      () => {
+        const methods = {
+          toggle: toggleAccordion,
+          open: () => setIsOpen(true),
+          close: () => setIsOpen(false),
         };
 
-        const contentElement = contentRef.current;
-        if (contentElement) {
-            contentElement.addEventListener('transitionend', handleTransitionEnd);
-        }
-
-        return () => {
-            if (contentElement) {
-                contentElement.removeEventListener('transitionend', handleTransitionEnd);
-            }
-        };
-    }, [isOpen]);
+        return Object.assign(document.createElement("div"), methods) as unknown as AccordionHandle;
+      },
+      [toggleAccordion],
+    );
 
     return (
+      <Column fillWidth className={styles.border}>
         <Flex
-            fillWidth
-            direction="column"
-            style={style}
-            className={className}>
-            <Flex 
-                style={{ borderTop: "1px solid var(--neutral-border-medium)", cursor: 'pointer' }}
-                paddingY="16"
-                paddingLeft="m"
-                paddingRight="m"
-                alignItems="center"
-                justifyContent="space-between"
-                tabIndex={0}
-                onClick={toggleAccordion}
-                aria-expanded={isOpen}
-                aria-controls="accordion-content">
-                <Heading
-                    as="h3"
-                    variant="heading-strong-s">
-                    {title}
-                </Heading>
-                <Icon
-                    name="chevronDown"
-                    size="m"
-                    style={{ display: 'flex', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform var(--transition-duration-micro-medium)' }} />
-            </Flex>
-            <div
-                id="accordion-content"
-                ref={contentRef}
-                style={{
-                    maxHeight,
-                    overflow: 'hidden',
-                    transition: 'max-height var(--transition-duration-macro-long) var(--transition-timing-function)',
-                    visibility: isOpen ? 'visible' : 'hidden'
-                }}
-                aria-hidden={!isOpen}>
-                <Flex
-                    paddingX="m"
-                    paddingBottom="32"
-                    direction="column">
-                    {children}
-                </Flex>
-            </div>
+          tabIndex={0}
+          className={styles.accordion}
+          cursor="pointer"
+          transition="macro-medium"
+          paddingY={size === "s" ? "8" : size === "m" ? "12" : "16"}
+          paddingX={size === "s" ? "12" : size === "m" ? "16" : "20"}
+          vertical="center"
+          horizontal="space-between"
+          onClick={toggleAccordion}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              toggleAccordion();
+            }
+          }}
+          aria-expanded={isOpen}
+          aria-controls="accordion-content"
+          radius={radius}
+          role="button"
+        >
+          <Text variant="heading-strong-s">{title}</Text>
+          <Icon
+            name={icon}
+            size={size === "s" ? "xs" : "s"}
+            onBackground={isOpen ? "neutral-strong" : "neutral-weak"}
+            style={{
+              display: "flex",
+              transform: isOpen ? `rotate(${iconRotation}deg)` : "rotate(0deg)",
+              transition: "var(--transition-micro-medium)",
+            }}
+          />
         </Flex>
+        <Grid
+          id="accordion-content"
+          fillWidth
+          style={{
+            gridTemplateRows: isOpen ? "1fr" : "0fr",
+            transition:
+              "grid-template-rows var(--transition-duration-macro-medium) var(--transition-eased)",
+          }}
+          aria-hidden={!isOpen}
+        >
+          <Flex fillWidth minHeight={0} overflow="hidden">
+            <Column fillWidth paddingX="20" paddingTop="8" paddingBottom="16" {...rest}>
+              {children}
+            </Column>
+          </Flex>
+        </Grid>
+      </Column>
     );
-});
+  },
+);
 
 Accordion.displayName = "Accordion";
-
 export { Accordion };
