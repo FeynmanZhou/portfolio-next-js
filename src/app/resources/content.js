@@ -172,7 +172,8 @@ const about = {
                 ]
             }
         ]
-    }
+    },
+    path: '/about',
 }
 
 const blog = {
