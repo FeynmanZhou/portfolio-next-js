@@ -14,9 +14,9 @@ const person = {
 
 const newsletter = {
     display: true,
-    title: <>Subscribe to {person.firstName}'s Newsletter</>,
+    title: <>Subscribe to {person.firstName}&#39;s Newsletter</>,
     description: <>I occasionally write about design, technology, and share thoughts on the intersection of creativity and engineering.</>
-}
+};
 
 const social = [
     // Links are automatically displayed.
@@ -45,14 +45,18 @@ const social = [
 
 const home = {
     label: 'Home',
-    title: `${person.name}'s Portfolio`,
+    title: `${person.name}&#39;s Portfolio`,
     description: `Portfolio website showcasing my work as a ${person.role}`,
     headline: <>Product Builder, Open Source Maintainer</>,
-    subline: <>Hey, I'm Feynman, a <InlineCode>Product Builder</InlineCode> for technology products and an active <InlineCode>maintainer</InlineCode> for open source projects. <br/> I share insights from my work and learning in tech, product thinking, and community building.
+    subline: <>Hey, I&#39;m Feynman, a <InlineCode>Product Builder</InlineCode> for technology products and an active <InlineCode>maintainer</InlineCode> for open source projects. <br/> I share insights from my work and learning in tech, product thinking, and community building.
 All views are my own.</>,
     path: '/',
     image: '/images/og/home.jpg',
-}
+    featured: {
+        href: '/featured',
+        title: 'Featured Project',
+    },
+};
 
 const about = {
     label: 'About',
@@ -188,7 +192,8 @@ const blog = {
 const work = {
     label: 'Work',
     title: 'My projects',
-    description: `Design and dev projects by ${person.name}`
+    description: `Design and dev projects by ${person.name}`,
+    path: '/work'
     // Create new project pages by adding a new .mdx file to app/blog/posts
     // All projects will be listed on the /home and /work routes
 }
@@ -239,7 +244,8 @@ const gallery = {
             alt: 'image',
             orientation: 'vertical'
         }
-    ]
+    ],
+    path: '/gallery',
 }
 
 export { person, social, newsletter, home, about, blog, work, gallery };

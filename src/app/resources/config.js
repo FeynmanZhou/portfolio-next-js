@@ -46,7 +46,8 @@ const style = {
     solidStyle:  'flat',         // flat | plastic
     border:      'playful',      // rounded | playful | conservative
     surface:     'translucent',  // filled | translucent
-    transition:  'all'           // all | micro | macro
+    transition:  'all',          // all | micro | macro
+    scaling:      '100',         // 90 | 95 | 100 | 105 | 110
 }
 
 const display = {
@@ -92,57 +93,59 @@ const display = {
  * @property {string} lines.color
  */
 
+const effects = {
+  mask: {
+    cursor: false,
+    x: 0,
+    y: 0,
+    radius: 50,
+  },
+  gradient: {
+    display: true,
+    opacity: 0.5,
+    x: 0,
+    y: 0,
+    width: 100,
+    height: 100,
+    tilt: 45,
+    colorStart: "#ffffff",
+    colorEnd: "#000000",
+  },
+  dots: {
+    display: true,
+    opacity: 0.3,
+    size: "small",
+    color: "#cccccc",
+  },
+  grid: {
+    display: true,
+    opacity: 0.2,
+    color: "#dddddd",
+    width: "10px",
+    height: "10px",
+  },
+  lines: {
+    display: true,
+    opacity: 0.4,
+    size: "medium",
+    thickness: 2,
+    angle: 30,
+    color: "#bbbbbb",
+  },
+};
+
 /**
  * @typedef {Object} Mailchimp
  * @property {string} action
  * @property {Effects} effects
  */
 
-const effects = {
-  mask: {
-    cursor: true,
-    x: 50,
-    y: 0,
-    radius: 100,
-  },
-  gradient: {
-    display: true,
-    opacity: 90,
-    x: 50,
-    y: 0,
-    width: 50,
-    height: 50,
-    tilt: 0,
-    colorStart: "accent-background-strong",
-    colorEnd: "static-transparent",
-  },
-  dots: {
-    display: true,
-    opacity: 20,
-    size: "2",
-    color: "brand-on-background-weak",
-  },
-  grid: {
-    display: false,
-    opacity: 100,
-    color: "neutral-alpha-medium",
-    width: "0.25rem",
-    height: "0.25rem",
-  },
-  lines: {
-    display: false,
-    opacity: 100,
-    color: "neutral-alpha-medium",
-    size: "16",
-    thickness: 1,
-    angle: 90,
-  },
-};
-
+/**
+ * @type {Mailchimp}
+ */
 const mailchimp = {
   action: "https://url/subscribe/post?parameters",
+  effects: effects, // Explicitly include effects in the object definition
 };
-
-mailchimp.effects = effects;
 
 export { routes, protectedRoutes, effects, style, display, mailchimp, baseURL, font };

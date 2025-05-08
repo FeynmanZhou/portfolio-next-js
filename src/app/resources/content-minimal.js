@@ -14,7 +14,7 @@ const person = {
 }
 
 const newsletter = {
-    title: <>Subscribe to {person.firstName}'s Newsletter</>,
+    title: <>Subscribe to {person.firstName}&#39;s Newsletter</>,
     description: <>I occasionally write about design, technology, and share thoughts on the intersection of creativity and engineering.</>
 }
 
@@ -45,10 +45,10 @@ const social = [
 
 const home = {
     label: 'Home',
-    title: `${person.name}'s Portfolio`,
+    title: `${person.name}&#39;s Portfolio`,
     description: `Portfolio website showcasing my work as a ${person.role}`,
     headline: <>Design engineer and builder</>,
-    subline: <>I'm Selene, a design engineer at <InlineCode>FLY</InlineCode>, where I craft intuitive user experiences. After hours, I build my own projects.</>
+    subline: <>I&#39;m Selene, a design engineer at <InlineCode>FLY</InlineCode>, where I craft intuitive user experiences. After hours, I build my own projects.</>
 }
 
 const about = {
