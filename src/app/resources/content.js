@@ -45,7 +45,7 @@ const social = [
 
 const home = {
     label: 'Home',
-    title: `${person.name}&#39;s Portfolio`,
+    title: `${person.name}'s Portfolio`,
     description: `Portfolio website showcasing my work as a ${person.role}`,
     headline: <>Product Builder, Open Source Maintainer</>,
     subline: <>Hey, I&#39;m Feynman, a <InlineCode>Product Builder</InlineCode> for technology products and an active <InlineCode>maintainer</InlineCode> for open source projects. <br/> I share insights from my work and learning in tech, product thinking, and community building.
