@@ -14,7 +14,7 @@ const person = {
 
 const newsletter = {
     display: true,
-    title: <>Subscribe to {person.firstName}'s Newsletter</>,
+    title: <>Subscribe to {person.firstName}&apos;s Newsletter</>,
     description: <>I occasionally write about design, technology, and share thoughts on the intersection of creativity and engineering.</>
 }
 
@@ -48,15 +48,21 @@ const home = {
     title: `${person.name}'s Portfolio`,
     description: `Portfolio website showcasing my work as a ${person.role}`,
     headline: <>Product Builder, Open Source Evangelist</>,
-    subline: <>Hey, I'm Feynman, a <InlineCode>Product Builder</InlineCode> for technology products and a <InlineCode></InlineCode> . <br/> I share knowledge and insights around my work and learning. My opinions are my own</>,
+    subline: <>Hey, I&apos;m Feynman, a <InlineCode>Product Builder</InlineCode> for technology products and a <InlineCode></InlineCode> . <br/> I share knowledge and insights around my work and learning. My opinions are my own</>,
     path: '/',
     image: '/images/og/home.jpg',
+    featured: {
+        href: '/work',
+        label: 'Featured Work',
+        title: 'Check out my latest projects'
+    }
 }
 
 const about = {
     label: 'About',
     title: 'About me',
     description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+    path: '/about',
     tableOfContent: {
         display: true,
         subItems: true
@@ -177,7 +183,8 @@ const about = {
 const blog = {
     label: 'Blog',
     title: 'Writing about product management and cloud technologies',
-    description: `Read what ${person.name} has been up to recently`
+    description: `Read what ${person.name} has been up to recently`,
+    path: '/blog'
     // Create new blog posts by adding a new .mdx file to app/blog/posts
     // All posts will be listed on the /blog route
 }
@@ -185,7 +192,8 @@ const blog = {
 const work = {
     label: 'Work',
     title: 'My projects',
-    description: `Design and dev projects by ${person.name}`
+    description: `Design and dev projects by ${person.name}`,
+    path: '/work'
     // Create new project pages by adding a new .mdx file to app/blog/posts
     // All projects will be listed on the /home and /work routes
 }
@@ -194,6 +202,7 @@ const gallery = {
     label: 'Gallery',
     title: 'My photo gallery',
     description: `A photo collection by ${person.name}`,
+    path: '/gallery',
     // Images from https://pexels.com
     images: [
         { 
