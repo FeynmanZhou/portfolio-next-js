@@ -6,7 +6,7 @@ const person = {
     get name() {
         return `${this.firstName} ${this.lastName}`;
     },
-    role:      'Product Builder, Open Source Maintainer',
+    role:      'Product Builder, Open Source Evangelist',
     avatar:    '/images/avatar.jpg',
     location:  'US/Pacific',     // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
     languages: ['English', 'Chinese']  // optional: Leave the array empty if you don't want to display languages
@@ -14,9 +14,9 @@ const person = {
 
 const newsletter = {
     display: true,
-    title: <>Subscribe to {person.firstName}&#39;s Newsletter</>,
+    title: <>Subscribe to {person.firstName}'s Newsletter</>,
     description: <>I occasionally write about design, technology, and share thoughts on the intersection of creativity and engineering.</>
-};
+}
 
 const social = [
     // Links are automatically displayed.
@@ -47,16 +47,11 @@ const home = {
     label: 'Home',
     title: `${person.name}'s Portfolio`,
     description: `Portfolio website showcasing my work as a ${person.role}`,
-    headline: <>Product Builder, Open Source Maintainer</>,
-    subline: <>Hey, I&#39;m Feynman, a <InlineCode>Product Builder</InlineCode> for technology products and an active <InlineCode>maintainer</InlineCode> for open source projects. <br/> I share insights from my work and learning in tech, product thinking, and community building.
-All views are my own.</>,
+    headline: <>Product Builder, Open Source Evangelist</>,
+    subline: <>Hey, I'm Feynman, a <InlineCode>Product Builder</InlineCode> for technology products and a <InlineCode></InlineCode> . <br/> I share knowledge and insights around my work and learning. My opinions are my own</>,
     path: '/',
     image: '/images/og/home.jpg',
-    featured: {
-        href: '/featured',
-        title: 'Featured Project',
-    },
-};
+}
 
 const about = {
     label: 'About',
@@ -176,15 +171,13 @@ const about = {
                 ]
             }
         ]
-    },
-    path: '/about',
+    }
 }
 
 const blog = {
     label: 'Blog',
     title: 'Writing about product management and cloud technologies',
-    description: `Read what ${person.name} has been up to recently`,
-    path: '/blog',
+    description: `Read what ${person.name} has been up to recently`
     // Create new blog posts by adding a new .mdx file to app/blog/posts
     // All posts will be listed on the /blog route
 }
@@ -192,8 +185,7 @@ const blog = {
 const work = {
     label: 'Work',
     title: 'My projects',
-    description: `Design and dev projects by ${person.name}`,
-    path: '/work'
+    description: `Design and dev projects by ${person.name}`
     // Create new project pages by adding a new .mdx file to app/blog/posts
     // All projects will be listed on the /home and /work routes
 }
@@ -244,8 +236,7 @@ const gallery = {
             alt: 'image',
             orientation: 'vertical'
         }
-    ],
-    path: '/gallery',
+    ]
 }
 
 export { person, social, newsletter, home, about, blog, work, gallery };
