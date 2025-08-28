@@ -47,8 +47,8 @@ const home = {
     label: 'Home',
     title: `${person.name}'s Portfolio`,
     description: `Portfolio website showcasing my work as a ${person.role}`,
-    headline: <>Product Builder, Open Source Evangelist</>,
-    subline: <>Hey, I&apos;m Feynman, a <InlineCode>Product Builder</InlineCode> for technology products and a <InlineCode></InlineCode> . <br/> I share knowledge and insights around my work and learning. My opinions are my own</>,
+    headline: <>Product Builder, Open Source Maintainer</>,
+    subline: <>Hey, I&apos;m Feynman, a <InlineCode>Product Builder</InlineCode> for technology products and an <InlineCode>Open Source Maintainer</InlineCode> for cloud-native projects. <br/> I share knowledge and insights around my work and learning. My opinions are my own</>,
     path: '/',
     image: '/images/og/home.jpg',
     featured: {

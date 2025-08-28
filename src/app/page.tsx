@@ -1,10 +1,9 @@
 import React from "react";
 
 import { Heading, Flex, Text, Button, Avatar, RevealFx, Column, Badge, Row } from "@/once-ui/components";
-import { Projects } from "@/components/work/Projects";
 
 import { baseURL, routes } from "@/app/resources";
-import { home, about, person, newsletter } from "@/app/resources/content";
+import { home, about, person, newsletter, blog } from "@/app/resources/content";
 import { Mailchimp } from "@/components";
 import { Posts } from "@/components/blog/Posts";
 import { Meta, Schema } from "@/once-ui/modules";
@@ -54,7 +53,7 @@ export default function Home() {
               {home.subline}
             </Text>
           </RevealFx>
-          <RevealFx paddingTop="12" delay={0.4} horizontal="start" paddingLeft="12">
+          <RevealFx paddingTop="12" delay={0.4} horizontal="start" paddingLeft="12" paddingBottom="16">
             <Button
               id="about"
               data-border="rounded"
@@ -75,24 +74,53 @@ export default function Home() {
               </Flex>
             </Button>
           </RevealFx>
+          <RevealFx translateY="12" delay={0.5} fillWidth horizontal="start" paddingBottom="32">
+            <Flex fillWidth paddingX="20">
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                maxWidth: '1200px',
+                aspectRatio: '16/9',
+                margin: '0 auto',
+                borderRadius: '24px',
+                overflow: 'hidden',
+                boxShadow: '0 4px 24px rgba(0,0,0,0.08)'
+              }}>
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/nNgQxokU36E?si=TBCZjzEgu0im-N5j"
+                  title="Self Introduction"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{ display: 'block', width: '100%', height: '100%' }}
+                />
+              </div>
+            </Flex>
+          </RevealFx>
         </Column>
       </Column>
-      <RevealFx translateY="16" delay={0.6}>
-        <Projects range={[1, 1]} />
-      </RevealFx>
       {routes["/blog"] && (
-        <Flex fillWidth gap="24" mobileDirection="column">
-          <Flex flex={1} paddingLeft="l" paddingTop="24">
+        <Column fillWidth gap="24">
+          <Flex fillWidth horizontal="space-between" vertical="center" paddingX="l">
             <Heading as="h2" variant="display-strong-xs" wrap="balance">
               Latest from the blog
             </Heading>
+            <Button
+              href={blog.path}
+              variant="secondary"
+              size="s"
+              arrowIcon
+            >
+              View all posts
+            </Button>
           </Flex>
-          <Flex flex={3} paddingX="20">
-            <Posts range={[1, 2]} columns="2" />
+          <Flex fillWidth paddingX="20">
+            <Posts range={[1, 3]} columns="1" thumbnail={true} direction="row" />
           </Flex>
-        </Flex>
+        </Column>
       )}
-      <Projects range={[2]} />
       {newsletter.display && <Mailchimp newsletter={newsletter} />}
     </Column>
   );
