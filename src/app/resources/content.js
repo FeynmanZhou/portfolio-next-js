@@ -6,21 +6,19 @@ const person = {
     get name() {
         return `${this.firstName} ${this.lastName}`;
     },
-    role:      'Product Builder, Open Source Evangelist',
+    role:      'Product Manager, Developer Advocate',
     avatar:    '/images/avatar.jpg',
-    location:  'US/Pacific',     // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-    languages: ['English', 'Chinese']  // optional: Leave the array empty if you don't want to display languages
+    location:  'US/Pacific',
+    languages: ['English', 'Chinese']
 }
 
 const newsletter = {
     display: true,
     title: <>Subscribe to {person.firstName}&apos;s Newsletter</>,
-    description: <>I occasionally write about design, technology, and share thoughts on the intersection of creativity and engineering.</>
+    description: <>I occasionally write about product management, open source, and share insights on building developer communities and cloud-native technologies.</>
 }
 
 const social = [
-    // Links are automatically displayed.
-    // Import new icons in /once-ui/icons.ts
     {
         name: 'GitHub',
         icon: 'github',
@@ -47,8 +45,8 @@ const home = {
     label: 'Home',
     title: `${person.name}'s Portfolio`,
     description: `Portfolio website showcasing my work as a ${person.role}`,
-    headline: <>Product Builder, Open Source Maintainer</>,
-    subline: <>Hey, I&apos;m Feynman, a <InlineCode>Product Builder</InlineCode> for technology products and an <InlineCode>Open Source Maintainer</InlineCode> for cloud-native projects. <br/> I share knowledge and insights around my work and learning. My opinions are my own</>,
+    headline: <>Product Manager, Developer Advocate</>,
+    subline: <>Hey, I&apos;m Feynman, a <InlineCode>Product Manager and open-source maintainer</InlineCode> passionate about cloud-native security and developer ecosystems. <br/> I specialize in bridging product strategy, engineering, and community engagement to deliver secure and developer-friendly solutions. <br/> Beyond my work at Microsoft, I co-founded HiTalker, an AI-powered public speaking software, and have organized major community events.<br/> </>,
     path: '/',
     image: '/images/og/home.jpg',
     featured: {
@@ -72,108 +70,126 @@ const about = {
     },
     calendar: {
         display: true,
-        link: 'https://cal.com'
+        link: 'https://calendly.com/feynmanzhou/meeting'
     },
     intro: {
         display: true,
         title: 'Introduction',
-        description: <>Feynman is a Product Builder and Content Creator with a passion for transforming complex challenges into simple, elegant product solutions. He has been working in open-source projects for over 6 years and built active communities for some popular projects. <br/> <br/> ENFJ. Feynman enjoys working in public and exploring new things. He relocated from Beijing, China to Seattle, U.S. in 2024. </>
+        description: <>Feynman is a Product Manager and Developer Advocate with 6+ years of experience driving product growth through community building and open source adoption. Currently at Microsoft, he leads security features for Azure cloud services and has successfully scaled open source projects adopted by 80+ Fortune 500 companies. <br/> <br/> As a co-founder of Hitalker, he combines product leadership with entrepreneurial experience, building cross-functional teams and developing innovative solutions. ENFJ personality type who enjoys working in public and exploring emerging technologies. Feynman is based in Seattle, U.S.</>
     },
     work: {
-        display: true, // set to false to hide this section
+        display: true,
         title: 'Work Experience',
         experiences: [
             {
                 company: 'Microsoft',
-                timeframe: '2022.5 - Present',
-                role: 'Product Manager',
+                timeframe: 'May 2022 - Present',
+                role: 'Product Manager 2',
                 achievements: [
-                    <>Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user engagement and 30% faster load times.</>,
-                    <>Spearheaded the integration of AI tools into design workflows, enabling designers to iterate 50% faster.</>
+                    <>Led security features with engineering, design, and product teams to meet organizational OKRs, ensuring measurable business impact across Azure cloud services.</>,
+                    <>Drove 3 open source projects and integrated with Azure Container Registry, adopted by 80+ Fortune 500 and 2,000+ customers.</>,
+                    <>Built a growth loop that doubled monthly active customers in six months through strategic product iterations.</>,
+                    <>Defined open-source community strategy, expanding contributors to 110+ and partners to 10+ organizations.</>
                 ],
-                images: [ // optional: leave the array empty if you don't want to display images
+                images: []
+            },
+            {
+                company: 'Hitalker (Public Speaking Evaluation Software)',
+                timeframe: 'Aug 2023 - Present',
+                role: 'Co-founder, Product Lead',
+                achievements: [
+                    <>Designed GUI prototype and launched website (hitalker.com), building a community of 200+ users from scratch.</>,
+                    <>Initiated a public speaking training program, recruiting 40+ participants and generating ¥20K+ RMB revenue.</>,
+                    <>Built and managed an 11-person virtual cross-functional team spanning engineering, design, product, and coaching functions.</>,
+                    <>Developed end-to-end product strategy from ideation to market launch in the EdTech space.</>
+                ],
+                images: []
+            },
+            {
+                company: 'QingCloud Cloud Computing Co., Ltd.',
+                timeframe: 'Jun 2018 - Apr 2022',
+                role: 'Senior Community Manager (Team Lead)',
+                achievements: [
+                    <>Defined and executed the community growth strategy for KubeSphere, scaling users and contributors from early adopters to a global open-source ecosystem.</>,
+                    <>Grew KubeSphere's social media presence (LinkedIn, Twitter, YouTube, WeChat) from scratch to a leading voice in the cloud-native community with 20K+ followers.</>,
+                    <>Established commercial partnerships with AWS, Azure, DigitalOcean, and Civo Cloud, onboarding KubeSphere to their marketplaces for global distribution.</>,
+                    <>Built data-driven community health assessments and growth metrics, directly contributing to user acquisition and retention strategies.</>,
+                    <>Supported internal teams in becoming better open source citizens and engaging with upstream projects based on community best practices.</>
+                ],
+                images: []
+            },
+            {
+                company: 'Hewlett Packard Enterprise (HPE)',
+                timeframe: 'Feb 2016 - Jun 2018',
+                role: 'Software Engineer',
+                achievements: [
+                    <>Developed and maintained the Business Asset Management system, supporting General Mobile customer operations for enterprise clients.</>,
+                    <>Built and optimized ETL pipelines for financial reconciliation, improving accuracy and reliability of customer data processing.</>,
+                    <>Delivered monthly BI reports to enterprise customers, enabling data-driven financial insights and decision-making for 10+ Fortune Global 500 clients.</>,
+                    <>Designed and implemented reporting dashboards with Power BI for in-depth data analytics and business intelligence.</>
+                ],
+                images: []
+            }
+        ]
+    },
+    studies: {
+        display: true,
+        title: 'Education',
+        institutions: [
+            {
+                name: 'Hunan University of Arts & Science',
+                timeframe: '2012 - 2016',
+                description: <>Electronic Information Science & Technology | Bachelor&apos;s Degree</>
+            },
+            {
+                name: 'University of International Business & Economics',
+                timeframe: '2020',
+                description: <>Economics Analytics | Professional Development</>
+            }
+        ]
+    },
+    technical: {
+        display: true,
+        title: 'Technical Skills & Expertise',
+        skills: [
+            {
+                title: 'Product Management',
+                description: <>Strategic product planning, roadmap development, cross-functional team leadership, user research, data-driven decision making, and growth strategy execution.</>,
+                images: []
+            },
+            {
+                title: 'Open Source & Community Building',
+                description: <>Open source strategy, developer community growth, contributor engagement, partnership development, and ecosystem building for cloud-native projects.</>,
+                images: []
+            },
+            {
+                title: 'Cloud Technologies',
+                description: <>Azure, Kubernetes, Docker, Container Registry, OCI, Linux, DevOps, Security, and cloud-native architecture patterns.</>,
+                images: [
                     {
-                        src: '/images/projects/project-01/notation-cli-screenshot.png',
-                        alt: 'Notation',
+                        src: '/images/projects/project-01/my-skills.png',
+                        alt: 'Cloud Technologies Stack',
                         width: 16,
                         height: 9
                     }
                 ]
             },
             {
-                company: 'QingCloud',
-                timeframe: '2018 - 2022',
-                role: 'Senior Community Manager (Team Lead)',
-                achievements: [
-                    <> Build community and awareness through public channels of influence including blogs, community events, meetings, and contributions to some open source projects.</>,
-                    <> Foster a data-driven community. Focus on the health assessments, user growth, and ecosystem scale.</>,
-                    <> Build the partnership with cloud providers (AWS, Azure, DigitalOcean, etc) and vendors.</>,
-                    <> Engage with community users, contributors, and partners, gathering feedback to the product teams on how to improve engagement.</>,
-                    <> Support internal teams to be better open source citizens and engage with the upstream open source projects, based on both internal and public community guidelines.</>,
-                ],
-                images: [ ]
-            },
-            {
-                company: 'Hewlett Packard Enterprise (HPE)',
-                timeframe: '2016 - 2018',
-                role: 'Software Engineer (BI)',
-                achievements: [
-                    <>Help the financial team in data ETL (extract transform and load) for financial reconciliation, and export structured BI data to the
-                    customers.</>,
-                    <>Served 10+ Fortune Global 500 customers and deliver reporting dashboard with Power BI for in-depth data analytics</>
-                ],
-                images: [ ]
-            }
-        ]
-    },
-    studies: {
-        display: true, // set to false to hide this section
-        title: 'Education',
-        institutions: [
-            {
-                name: 'Hunan University of Arts & Science',
-                timeframe: '2012 - 2016',
-                description: <>Electronic Information Science & Technology | Bachelor degree</>,
-            },
-            {
-                name: 'University of International Business & Economics',
-                timeframe: '2020',
-                description: <>Economics analytics | Part-time </>,
-            }
-        ]
-    },
-    technical: {
-        display: true, // set to false to hide this section
-        title: 'Technical skills',
-        skills: [
-            {
-                title: 'UI/UX Design',
-                description: <>Able to create prototype in Figma with various UI library.</>,
+                title: 'Design & Prototyping',
+                description: <>UI/UX design, prototyping in Figma, user experience optimization, and design system development for technical products.</>,
                 images: [
                     {
                         src: '/images/projects/project-01/notaryproject-landing-page.jpg',
-                        alt: 'Project image',
+                        alt: 'Design Portfolio',
                         width: 16,
                         height: 9
                     },
                     {
                         src: '/images/projects/project-01/oras-landingpage.jpg',
-                        alt: 'Project image',
+                        alt: 'Landing Page Design',
                         width: 16,
                         height: 9
-                    },
-                ]
-            },
-            {
-                title: 'Cloud Computing Technologies',
-                description: <>Azure, Kubernetes, Docker, OCI, Linux, DevOps, Security</>,
-                images: [
-                    {
-                        src: '/images/projects/project-01/my-skills.png',
-                        alt: 'Project image',
-                        width: 16,
-                        height: 9
-                    },
+                    }
                 ]
             }
         ]
@@ -185,8 +201,6 @@ const blog = {
     title: 'Writing about product management and cloud technologies',
     description: `Read what ${person.name} has been up to recently`,
     path: '/blog'
-    // Create new blog posts by adding a new .mdx file to app/blog/posts
-    // All posts will be listed on the /blog route
 }
 
 const work = {
@@ -194,8 +208,6 @@ const work = {
     title: 'My projects',
     description: `Design and dev projects by ${person.name}`,
     path: '/work'
-    // Create new project pages by adding a new .mdx file to app/blog/posts
-    // All projects will be listed on the /home and /work routes
 }
 
 const gallery = {
@@ -203,45 +215,44 @@ const gallery = {
     title: 'My photo gallery',
     description: `A photo collection by ${person.name}`,
     path: '/gallery',
-    // Images from https://pexels.com
     images: [
         { 
-            src: '/images/gallery/vertical-1.jpg', 
+            src: '/images/gallery/vertical-1.jpg',
             alt: 'image',
             orientation: 'vertical'
         },
         { 
-            src: '/images/gallery/horizontal-1.jpg', 
+            src: '/images/gallery/horizontal-1.jpg',
             alt: 'image',
             orientation: 'horizontal'
         },
         { 
-            src: '/images/gallery/vertical-2.jpg', 
+            src: '/images/gallery/vertical-2.jpg',
             alt: 'image',
             orientation: 'vertical'
         },
         { 
-            src: '/images/gallery/horizontal-2.jpg', 
+            src: '/images/gallery/horizontal-2.jpg',
             alt: 'image',
             orientation: 'horizontal'
         },
         { 
-            src: '/images/gallery/horizontal-3.jpg', 
+            src: '/images/gallery/horizontal-3.jpg',
             alt: 'image',
             orientation: 'horizontal'
         },
         { 
-            src: '/images/gallery/vertical-3.jpg', 
+            src: '/images/gallery/vertical-3.jpg',
             alt: 'image',
             orientation: 'vertical'
         },
         { 
-            src: '/images/gallery/horizontal-4.jpg', 
+            src: '/images/gallery/horizontal-4.jpg',
             alt: 'image',
             orientation: 'horizontal'
         },
         { 
-            src: '/images/gallery/vertical-4.jpg', 
+            src: '/images/gallery/vertical-4.jpg',
             alt: 'image',
             orientation: 'vertical'
         }
