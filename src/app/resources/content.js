@@ -111,7 +111,7 @@ const about = {
                 role: 'Senior Community Manager (Team Lead)',
                 achievements: [
                     <>Defined and executed the community growth strategy for KubeSphere, scaling users and contributors from early adopters to a global open-source ecosystem.</>,
-                    <>Grew KubeSphere's social media presence (LinkedIn, Twitter, YouTube, WeChat) from scratch to a leading voice in the cloud-native community with 20K+ followers.</>,
+                    <>Grew KubeSphere&apos;s social media presence (LinkedIn, Twitter, YouTube, WeChat) from scratch to a leading voice in the cloud-native community with 20K+ followers.</>,
                     <>Established commercial partnerships with AWS, Azure, DigitalOcean, and Civo Cloud, onboarding KubeSphere to their marketplaces for global distribution.</>,
                     <>Built data-driven community health assessments and growth metrics, directly contributing to user acquisition and retention strategies.</>,
                     <>Supported internal teams in becoming better open source citizens and engaging with upstream projects based on community best practices.</>
