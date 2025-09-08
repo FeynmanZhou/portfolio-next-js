@@ -6,7 +6,7 @@ const person = {
     get name() {
         return `${this.firstName} ${this.lastName}`;
     },
-    role:      'Product Manager, Developer Advocate',
+    role:      'Product Manager, Community Builder',
     avatar:    '/images/avatar.jpg',
     location:  'US/Pacific',
     languages: ['English', 'Chinese']
@@ -45,8 +45,8 @@ const home = {
     label: 'Home',
     title: `${person.name}'s Portfolio`,
     description: `Portfolio website showcasing my work as a ${person.role}`,
-    headline: <>Product Manager, Developer Advocate</>,
-    subline: <>Hey, I&apos;m Feynman, a <InlineCode>Product Manager and open-source maintainer</InlineCode> passionate about cloud-native security and developer ecosystems. <br/> I specialize in bridging product strategy, engineering, and community engagement to deliver secure and developer-friendly solutions. <br/> Beyond my work at Microsoft, I co-founded HiTalker, an AI-powered public speaking software, and have organized major community events.<br/> </>,
+    headline: <>Product Manager, Community Builder</>,
+    subline: <>Hey, I&apos;m Feynman, a <InlineCode>Product Manager and Community Builder</InlineCode> passionate about AI, cloud-native technologies, community growth. <br/> I specialize in bridging product strategy, design, and community growth to deliver secure and user-friendly solutions. <br/> Beyond my work at Microsoft, I co-founded HiTalker, an AI-powered public speaking software, and have organized 20+ community events.<br/> </>,
     path: '/',
     image: '/images/og/home.jpg',
     featured: {
@@ -75,7 +75,7 @@ const about = {
     intro: {
         display: true,
         title: 'Introduction',
-        description: <>Feynman is a Product Manager and Developer Advocate with 6+ years of experience driving product growth through community building and open source adoption. Currently at Microsoft, he leads security features for Azure cloud services and has successfully scaled open source projects adopted by 80+ Fortune 500 companies. <br/> <br/> As a co-founder of Hitalker, he combines product leadership with entrepreneurial experience, building cross-functional teams and developing innovative solutions. ENFJ personality type who enjoys working in public and exploring emerging technologies. Feynman is based in Seattle, U.S.</>
+        description: <>Feynman is a Product Manager and Community Builder with 8+ years of experience driving product growth through community building and open source adoption. Currently at Microsoft, he leads security features for Azure cloud services and has successfully scaled open source projects adopted by 80+ Fortune 500 companies. <br/> <br/> As a co-founder of Hitalker, he combines product leadership with entrepreneurial experience, building cross-functional teams and developing innovative solutions. ENFJ personality type who enjoys working in public and exploring emerging technologies. Feynman is based in Seattle, U.S.</>
     },
     work: {
         display: true,
@@ -99,7 +99,7 @@ const about = {
                 role: 'Co-founder, Product Lead',
                 achievements: [
                     <>Designed GUI prototype and launched website (hitalker.com), building a community of 200+ users from scratch.</>,
-                    <>Initiated a public speaking training program, recruiting 40+ participants and generating ¥20K+ RMB revenue.</>,
+                    <>Initiated a public speaking training program, recruiting 40+ participants and generating ¥45K+ RMB revenue.</>,
                     <>Built and managed an 11-person virtual cross-functional team spanning engineering, design, product, and coaching functions.</>,
                     <>Developed end-to-end product strategy from ideation to market launch in the EdTech space.</>
                 ],

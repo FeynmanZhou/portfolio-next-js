@@ -89,7 +89,7 @@ export default function Home() {
                 <iframe
                   width="100%"
                   height="100%"
-                  src="https://www.youtube.com/embed/nNgQxokU36E?si=TBCZjzEgu0im-N5j"
+                  src="https://www.youtube.com/embed/TNeam7hZtf0?si=hi5pHtoWiRx5e3wV"
                   title="Self Introduction"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
