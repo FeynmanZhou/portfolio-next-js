@@ -223,6 +223,22 @@ const gallery = {
         { 
             videoId: 'u4zinRUhtw8',
             title: 'Video 2',
+        },
+        { 
+            videoId: '8yH3Os3Dsg0',
+            title: 'Video 3',
+        },
+        { 
+            videoId: 'k45kper34rE',
+            title: 'Video 4',
+        },
+        { 
+            videoId: '4hyA3yEB8Lo',
+            title: 'Video 5',
+        },
+        { 
+            videoId: 'JwvrOiVakLM',
+            title: 'Video 6',
         }
     ]
 }

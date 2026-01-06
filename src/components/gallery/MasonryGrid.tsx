@@ -6,11 +6,14 @@ import { gallery } from "@/app/resources/content";
 
 export default function MasonryGrid() {
   return (
-    <Flex
-      direction="column"
-      gap="l"
-      maxWidth="l"
-      style={{ width: "100%" }}
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+        gap: "var(--static-space-16)",
+        width: "100%",
+        maxWidth: "900px",
+      }}
     >
       {gallery.videos.map((video, index) => (
         <div
@@ -39,6 +42,6 @@ export default function MasonryGrid() {
           />
         </div>
       ))}
-    </Flex>
+    </div>
   );
 }
