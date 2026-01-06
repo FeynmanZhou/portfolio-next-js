@@ -30,9 +30,11 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
   // Initialize theme from localStorage on mount
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as Theme;
-    if (savedTheme) {
-      setTheme(savedTheme);
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme') as Theme;
+      if (savedTheme) {
+        setTheme(savedTheme);
+      }
     }
     setMounted(true);
   }, []);
@@ -70,7 +72,9 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     theme,
     resolvedTheme,
     setTheme: (newTheme: Theme) => {
-      localStorage.setItem('theme', newTheme);
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('theme', newTheme);
+      }
       setTheme(newTheme);
     },
   };
