@@ -212,49 +212,17 @@ const work = {
 
 const gallery = {
     label: 'Gallery',
-    title: 'My photo gallery',
-    description: `A photo collection by ${person.name}`,
+    title: 'My video gallery',
+    description: `A video collection by ${person.name}`,
     path: '/gallery',
-    images: [
+    videos: [
         { 
-            src: '/images/gallery/vertical-1.jpg',
-            alt: 'image',
-            orientation: 'vertical'
+            videoId: 'no3Hg6u80YE',
+            title: 'Video 1',
         },
         { 
-            src: '/images/gallery/horizontal-1.jpg',
-            alt: 'image',
-            orientation: 'horizontal'
-        },
-        { 
-            src: '/images/gallery/vertical-2.jpg',
-            alt: 'image',
-            orientation: 'vertical'
-        },
-        { 
-            src: '/images/gallery/horizontal-2.jpg',
-            alt: 'image',
-            orientation: 'horizontal'
-        },
-        { 
-            src: '/images/gallery/horizontal-3.jpg',
-            alt: 'image',
-            orientation: 'horizontal'
-        },
-        { 
-            src: '/images/gallery/vertical-3.jpg',
-            alt: 'image',
-            orientation: 'vertical'
-        },
-        { 
-            src: '/images/gallery/horizontal-4.jpg',
-            alt: 'image',
-            orientation: 'horizontal'
-        },
-        { 
-            src: '/images/gallery/vertical-4.jpg',
-            alt: 'image',
-            orientation: 'vertical'
+            videoId: 'u4zinRUhtw8',
+            title: 'Video 2',
         }
     ]
 }
