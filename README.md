@@ -1,5 +1,7 @@
 # **Magic Portfolio by Once UI**
 
+English | [中文](./README.zh-CN.md)
+
 View the [demo here](https://demo.magic-portfolio.com).
 
 ![Magic Portfolio](https://demo.magic-portfolio.com/images/og/home.jpg)
